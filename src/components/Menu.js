@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Hero from './Hero'
 import SpecialDishes from './SpecialDishes'
 import FilteredDishes from './FilteredDishes'
+import Header from './Header'
 import Loader from './Loader'
 
 
@@ -58,6 +59,7 @@ function Menu() {
 
   return (
     <div>
+       <Header/>
       {
         !loading ? <Hero randomImage={hero}/> : (
          <Loader/> 

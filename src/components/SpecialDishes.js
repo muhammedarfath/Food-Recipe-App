@@ -1,10 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
+import Card from './Card'
+import Popup from './Popup'
 
 function SpecialDishes(props) {
+
+   const [showPopup,setPopup]=useState(false)
    let limit = 8
+
+   function closePopup(){
+    setPopup(false)
+    }
+
+
+
 
   return (
     <section className="special-dishes">
+       {showPopup &&  <Popup closePop={closePopup} />}
         <div className="container">
             <div className="special-dishes-content text-center">
                 <h2>Our Special Dishes</h2>
@@ -16,10 +28,8 @@ function SpecialDishes(props) {
                         props.specialItem.map((item,index)=>{
                             if (index < limit){
                                 return(
-                                <li>
-                                    <img src={item.strMealThumb} alt="" className='br-10' />
-                                    <h5>{item.strMeal}</h5>
-                                </li>
+                                    <Card Items={item} popupStatus={setPopup}/>
+
                                 )
                             } 
                         })

@@ -259,6 +259,7 @@ header {
       font-weight: bold;
       transition: all ease 0.3s;
 
+
       &.active {
         background-color: black;
       }
@@ -275,6 +276,10 @@ header {
 
     h5 {
       margin-top: 18px;
+    }
+    
+    h2 {
+      font-size: 18px;
     }
 
     li {
