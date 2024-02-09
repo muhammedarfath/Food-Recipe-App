@@ -4,12 +4,15 @@ import SpecialDishes from './SpecialDishes'
 import FilteredDishes from './FilteredDishes'
 import Header from './Header'
 import Loader from './Loader'
+import {AllMenu} from './AllMenuContext'
+
+
 
 
 
 function Menu() {
 
-  const [menu,setMenu] = useState([])
+
   const [category,setCategory] = useState([])
   const [hero,setHero] = useState('')
   const [loading,setLoading] = useState(true)
@@ -32,14 +35,6 @@ function Menu() {
 
   }  
 
-  async function MenuItems(){
-    const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?f=c";
-    let response = await fetch(API_URL)
-    let data = await response.json();
-    setMenu(data.meals)
-
-  }  
-
 
   async function CategoryItems () {
     const API_URL = "https://www.themealdb.com/api/json/v1/1/categories.php";
@@ -51,7 +46,6 @@ function Menu() {
 
 
   useEffect(()=>{
-    MenuItems();
     CategoryItems();
     HeroItems();
     SingleCategories();
@@ -65,12 +59,16 @@ function Menu() {
          <Loader/> 
         )
       }
-      {
-        !loading ? <SpecialDishes specialItem={menu} /> : null
-      }
-      {
-        !loading ? <FilteredDishes setSingleOne={setSingleCategory} singleOne={singleCategory} allCategory={category} specialItem={menu} /> : null
-      }
+      <AllMenu>
+        
+         <SpecialDishes  /> 
+         <FilteredDishes 
+         setSingleOne={setSingleCategory} 
+         singleOne={singleCategory}
+          allCategory={category}  /> 
+
+      </AllMenu>
+
        
        
        

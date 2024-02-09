@@ -1,8 +1,11 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import Card from './Card'
 import Popup from './Popup'
+import {AllMenuContext} from './AllMenuContext'
 
-function SpecialDishes(props) {
+function SpecialDishes() {
+    const specialItem = useContext(AllMenuContext)
+    console.log("vaddaaaaaa",specialItem)
 
    const [showPopup,setPopup]=useState(false)
    const [currentItem,setCurrentItem]=useState('')
@@ -13,12 +16,9 @@ function SpecialDishes(props) {
     setPopup(!showPopup)
     }
 
-
-
-
   return (
     <section className="special-dishes">
-       {showPopup &&  <Popup closePop={popuphandler} allItems={props.specialItem} currentItem={currentItem}/>}
+       {showPopup &&  <Popup closePop={popuphandler} currentItem={currentItem}/>}
         <div className="container">
             <div className="special-dishes-content text-center">
                 <h2>Our Special Dishes</h2>
@@ -27,7 +27,7 @@ function SpecialDishes(props) {
             <div className="special-dishes-list">
                 <ul className='flex flex-wrap gap-30'>
                     {
-                        props.specialItem.map((item,index)=>{
+                        specialItem.map((item,index)=>{
                             if (index < limit){
                                 return(
                                     <Card Items={item} popupStatus={popuphandler}/>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AllMenuContext } from './AllMenuContext'
 
-function Popup({currentItem,allItems,closePop}) {
-
+function Popup({currentItem,closePop}) {
+  const allItems = useContext(AllMenuContext)
 
 
   let Detail = allItems.filter((item)=>{

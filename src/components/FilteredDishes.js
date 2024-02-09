@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import Card from "./Card";
+import {AllMenuContext} from './AllMenuContext'
+
+
+
 
 function FilteredDishes(props) {
+
+  const specialItem = useContext(AllMenuContext)
+
+
   let [filterDish, setFilterDish] = useState([]);
   let [activeDish, setActiveDish] = useState("Beef");
   let [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +24,7 @@ function FilteredDishes(props) {
   function handleCategory(item) {
     props.setSingleOne([]);
     setActiveDish(item);
-    let filteredDishe = props.specialItem.filter((meal) => {
+    let filteredDishe = specialItem.filter((meal) => {
       return meal.strCategory === item;
     });
 
