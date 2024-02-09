@@ -5,10 +5,12 @@ import Popup from './Popup'
 function SpecialDishes(props) {
 
    const [showPopup,setPopup]=useState(false)
+   const [currentItem,setCurrentItem]=useState('')
    let limit = 8
 
-   function closePopup(){
-    setPopup(false)
+   function popuphandler(item){
+    setCurrentItem(item)
+    setPopup(!showPopup)
     }
 
 
@@ -16,7 +18,7 @@ function SpecialDishes(props) {
 
   return (
     <section className="special-dishes">
-       {showPopup &&  <Popup closePop={closePopup} />}
+       {showPopup &&  <Popup closePop={popuphandler} allItems={props.specialItem} currentItem={currentItem}/>}
         <div className="container">
             <div className="special-dishes-content text-center">
                 <h2>Our Special Dishes</h2>
@@ -28,7 +30,7 @@ function SpecialDishes(props) {
                         props.specialItem.map((item,index)=>{
                             if (index < limit){
                                 return(
-                                    <Card Items={item} popupStatus={setPopup}/>
+                                    <Card Items={item} popupStatus={popuphandler}/>
 
                                 )
                             } 

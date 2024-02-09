@@ -2,15 +2,17 @@ import React from 'react'
 
 
 function Card(props) {
+  const {
+    Items,
+    popupStatus
+  } = props
 
-    function popupHandler () {
-        props.popupStatus(true)
-    }
+
   return (
     <li>
-        <a onClick={popupHandler}>
-            <img src={props.Items.strMealThumb} alt="" className='br-10' />
-            <h5>{props.Items.strMeal}</h5>
+        <a onClick={()=>popupStatus(Items.strMeal)}>
+            <img src={Items.strMealThumb} alt="" className='br-10' />
+            <h5>{Items.strMeal}</h5>
         </a>
 
     </li>
