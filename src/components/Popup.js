@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 import { AllMenuContext } from './AllMenuContext'
+import { DispathContext } from '../context/AppProvider'
 
-function Popup({currentItem,closePop}) {
+
+
+function Popup({currentItem,closePop,handleCartItem}) {
   const allItems = useContext(AllMenuContext)
+  const dispatch = useContext(DispathContext)
 
 
   let Detail = allItems.filter((item)=>{
@@ -21,6 +25,16 @@ function Popup({currentItem,closePop}) {
           <li>{item.strIngredient3}</li>
           <li>{item.strIngredient4}</li>
         </ul>
+        <button onClick={()=>{
+          dispatch({
+            type:"add_to_cart",
+            payload:{
+              title:item.strMeal,
+              img:item.strMealThumb,
+            }
+          })
+        }}>Order Now</button>
+        <h5 className="popup-close" onClick={closePop}>close</h5>
       </div>
     )
 
@@ -33,8 +47,6 @@ function Popup({currentItem,closePop}) {
     <div className='popup'>
         <div className="popup-content">
             {Detail}
-            <button>add to cart</button>
-            <h5 className="popup-close" onClick={closePop}>close</h5>
         </div>
 
     </div>

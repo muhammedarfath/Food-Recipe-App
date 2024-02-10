@@ -5,6 +5,7 @@ import FilteredDishes from './FilteredDishes'
 import Header from './Header'
 import Loader from './Loader'
 import {AllMenu} from './AllMenuContext'
+import { AppProvider } from '../context/AppProvider'
 
 
 
@@ -53,25 +54,27 @@ function Menu() {
 
   return (
     <div>
-       <Header/>
-      {
-        !loading ? <Hero randomImage={hero}/> : (
-         <Loader/> 
-        )
-      }
-      <AllMenu>
-        
-         <SpecialDishes  /> 
-         <FilteredDishes 
-         setSingleOne={setSingleCategory} 
-         singleOne={singleCategory}
+      <AppProvider>
+
+        <Header/>
+        {
+          !loading ? <Hero randomImage={hero}/> : (
+          <Loader/> 
+          )
+        }
+        <AllMenu>
+          
+          <SpecialDishes  /> 
+          <FilteredDishes 
+          setSingleOne={setSingleCategory} 
+          singleOne={singleCategory}
           allCategory={category}  /> 
 
-      </AllMenu>
+        </AllMenu>
 
-       
-       
-       
+        
+        
+      </AppProvider>
     </div>
   )
 }
